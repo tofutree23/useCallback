@@ -25,10 +25,8 @@ export default function Favorite({
     _.debounce((value) => {
       handleEditFavorite(idx, value);
     }, 500),
-    [favorite]
+    [handleEditFavorite]
   );
-
-  console.log(idx, favorite, favorites);
 
   return (
     <input
