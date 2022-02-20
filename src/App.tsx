@@ -15,9 +15,11 @@ function App() {
   const [person, setPerson] = useState<IPerson>(initialPerson);
 
   const handleEditFavorite = (idx: number, value: string) => {
-    const updatedFavorites = [...person.favorites];
-    updatedFavorites.splice(idx, 1, value);
-    setPerson({ ...person, favorites: updatedFavorites });
+    setPerson((prevPerson) => {
+      const updatedFavorites = [...prevPerson.favorites];
+      updatedFavorites.splice(idx, 1, value);
+      return { ...prevPerson, favorites: updatedFavorites };
+    });
   };
 
   return (

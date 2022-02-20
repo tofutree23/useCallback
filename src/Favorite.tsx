@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import _ from "lodash";
 
 interface IFavorite {
@@ -21,11 +21,13 @@ export default function Favorite({
     handleUpdateFavorite(value);
   };
 
-  const handleUpdateFavorite = useCallback(
-    _.debounce((value) => {
-      handleEditFavorite(idx, value);
-    }, 500),
-    [handleEditFavorite]
+  const handleUpdateFavorite = useMemo(
+    () =>
+      _.debounce((value) => {
+        console.log("value", value);
+        handleEditFavorite(idx, value);
+      }, 500),
+    [favorite]
   );
 
   return (
